@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Notification() {
   return (
-    <div className="min-h-dvh w-full fixed top-0 left-0 z-200 flex items-center justify-center
+    <div className="md:hidden min-h-dvh w-full fixed top-0 left-0 z-200 flex items-center justify-center
 bg-[#1e1e2e] [background-image:radial-gradient(rgba(100,_116,_139,_0.2)_2px,_transparent_2px)] [background-size:16px_16px]
       text-[#cdd6f4]
       ">
