@@ -34,7 +34,7 @@ export default function FlyingLetters({
   className = '',
   onComplete,
   delay = 0
-}): FlyingLettersProps {
+}: FlyingLettersProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const lettersRef = useRef<HTMLSpanElement[]>([]);
   const setLetterRef = (index: number) => (el: HTMLSpanElement | null) => {
