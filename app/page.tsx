@@ -1,3 +1,4 @@
+import LoadingScreen from "@/components/animation/LoadingScreen";
 import AboutMeSection from "@/components/landing/AboutMeSection";
 import Footer from "@/components/landing/Footer";
 import Header from "@/components/landing/Header";
@@ -14,6 +15,7 @@ export default function Home() {
 bg-[#1e1e2e] [background-image:radial-gradient(rgba(100,_116,_139,_0.2)_2px,_transparent_2px)] [background-size:16px_16px]
       text-[#cdd6f4]
         ">
+        <LoadingScreen />
         <HeroSection />
         <ProjectsSection />
         <AboutMeSection />
