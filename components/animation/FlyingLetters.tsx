@@ -45,44 +45,80 @@ export default function FlyingLetters({
 
   useGSAP(
     () => {
+      const tl = gsap.timeline();
       if (lettersRef.current.length !== text.length) return;
 
       const letters = lettersRef.current;
 
-      letters.forEach((letter, i) => {
-        const pos = positions[i % positions.length];
-        gsap.set(letter, {
-          x: pos.x,
-          y: pos.y,
-          rotation: pos.rotation,
-          opacity: 0,
-          scale: 0.5,
+      tl.call(() => {
+        letters.forEach((letter, i) => {
+          const pos = positions[i % positions.length];
+          gsap.set(letter, {
+            x: pos.x,
+            y: pos.y,
+            rotation: pos.rotation,
+            opacity: 1,
+            scale: 1,
+          });
         });
-      });
-      const state = Flip.getState(letters);
+      })
 
-      letters.forEach((letter) => {
-        gsap.set(letter, {
-          x: 0,
-          y: 0,
-          rotation: 0,
-          opacity: 1,
-          scale: 1,
-          clearProps: "all",
+        .to(".letter", {
+          x: "+=5",
+          duration: 0.1,
+          yoyo: true,
+          repeat: 2,
+          ease: "sine.inOut",
+          delay: delay,
+        })
+
+        .call(() => {
+          const state = Flip.getState(letters);
+          letters.forEach((letter) => {
+            gsap.set(letter, {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              opacity: 1,
+              scale: 1,
+              clearProps: "all",
+            });
+          });
+          const subtl = gsap.timeline();
+          subtl.add(
+            Flip.from(state, {
+              duration: duration,
+              ease: "power3.inOut",
+              stagger: stagger,
+              onComplete: () => {
+                if (onComplete) {
+                  onComplete;
+                }
+              },
+            }),
+          );
+
+          subtl.call(() => {
+            letters.forEach((letter, index) => {
+              const delay = index * 0.1;
+
+              gsap.to(letter, {
+                y: -50,
+                duration: 0.2,
+                ease: "power2.out",
+                delay: delay,
+              });
+              gsap.to(letter, {
+                y: 0,
+                duration: 0.3,
+                ease: "bounce.out",
+                delay: delay + 0.15,
+              });
+            });
+          });
+
+          subtl.play();
         });
-      });
-
-      Flip.from(state, {
-        duration: duration,
-        ease: "power3.inOut",
-        stagger: stagger,
-        delay: delay,
-        onComplete: () => {
-          if (onComplete) {
-            onComplete;
-          }
-        },
-      });
     },
     {
       scope: containerRef,
@@ -99,7 +135,7 @@ export default function FlyingLetters({
         <span
           key={index}
           ref={setLetterRef(index)}
-          className="inline-block"
+          className="inline-block letter"
           style={{
             opacity: 0,
           }}
