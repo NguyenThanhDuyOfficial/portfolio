@@ -1,5 +1,5 @@
 import AboutMeSection from "@/components/landing/AboutMeSection";
-import Contact from "@/components/landing/Contact";
+import Contact from "@/components/contact/ContactCard";
 import Footer from "@/components/landing/Footer";
 import Header from "@/components/landing/Header";
 import HeroSection from "@/components/landing/HeroSection";
@@ -15,7 +15,6 @@ export default function Home() {
         {/* <AboutMeSection /> */}
         <Footer></Footer>
       </main>
-      <Contact />
     </div>
   );
 }

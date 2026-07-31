@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -29,7 +29,7 @@
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-muted-foreground: var(--text-muted);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
@@ -86,14 +86,14 @@
   --background: #1e1e2e;
   --foreground: #cdd6f4;
   --card: #313244;
-  --card-foreground: #cdd6f4;
+  --card-foreground: oklch(0.15 0.04 80);
   --popover: #313244;
   --popover-foreground: #cdd6f4;
   --primary-foreground: oklch(1 0.02 80);
   --secondary: #89dceb;
   --secondary-foreground: #1e1e2e;
   --muted: #313244;
-  --muted-foreground: #a6adc8;
+  --muted-foreground: oklch(0.4 0.04 80);
   --accent: #cba6f7;
   --accent-foreground: #1e1e2e;
   --destructive: #f38ba8;

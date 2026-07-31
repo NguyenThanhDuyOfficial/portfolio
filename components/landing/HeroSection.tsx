@@ -6,8 +6,11 @@ import Link from "next/link";
 import FlyingLetters from "../animation/FlyingLetters";
 import Typewriter from "../animation/TypeWriter";
 import SocialLinks from "../ui/socialLinks";
+import { useState } from "react";
+import ContactCard from "../contact/ContactCard";
 
 export default function HeroSection() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
   return (
     <section
       className="min-h-[calc(100vh-4rem)] md:min-h-screen py-12 md:py-4 gap-8 md:gap-16 flex flex-col justify-end items-center
@@ -72,9 +75,18 @@ export default function HeroSection() {
             <br />
             What about you? What do you need?
           </p>
-          <Button variant="default" size="lg" className="px-4 h-12">
+          <Button
+            variant="default"
+            size="lg"
+            className="px-4 h-12"
+            onClick={() => setIsContactOpen(!isContactOpen)}
+          >
             Let's Talk
           </Button>
+          <ContactCard
+            isOpen={isContactOpen}
+            onClose={() => setIsContactOpen(false)}
+          />
         </div>
       </div>
     </section>
