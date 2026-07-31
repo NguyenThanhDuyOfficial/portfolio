@@ -122,7 +122,6 @@ export default function FlyingLetters({
     },
     {
       scope: containerRef,
-      dependencies: [text, positions, duration, stagger, delay],
     },
   );
 

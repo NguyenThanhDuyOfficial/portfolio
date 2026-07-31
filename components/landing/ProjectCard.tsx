@@ -26,84 +26,102 @@ export default function ProjectCard({
       const info = infoRef.current;
       const container = containerRef.current;
 
-      gsap.set(info, { opacity: 0, x: 20 });
-      const handleMouseEnter = () => {
-        setIsHovered(true);
+      const mm = gsap.matchMedia();
 
-        gsap.to(image, {
-          width: "60%",
-          duration: 0.5,
-          ease: "power2.out",
-        });
-        gsap.to(info, {
-          opacity: 1,
-          x: 0,
-          duration: 0.5,
-          ease: "power2.out",
-          delay: 0.2,
-        });
-      };
-      const handleMouseLeave = () => {
-        setIsHovered(false);
+      mm.add("(min-width: 768px)", () => {
+        gsap.set(info, { opacity: 0, x: 20 });
+        const handleMouseEnter = () => {
+          setIsHovered(true);
 
-        gsap.to(image, {
-          width: "100%",
-          duration: 0.5,
-          ease: "power2.out",
-        });
-        gsap.to(info, {
-          opacity: 0,
-          x: 20,
-          duration: 0.5,
-          ease: "power2.out",
-          delay: 0.2,
-        });
-      };
-      container.addEventListener("mouseenter", handleMouseEnter);
+          gsap.to(image, {
+            width: "60%",
+            duration: 0.5,
+            ease: "power2.out",
+          });
+          gsap.to(info, {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            delay: 0.2,
+          });
+        };
+        const handleMouseLeave = () => {
+          setIsHovered(false);
 
-      return () => {
-        container.removeEventListener("mouseenter", handleMouseEnter);
-      };
+          gsap.to(image, {
+            width: "100%",
+            duration: 0.5,
+            ease: "power2.out",
+          });
+          gsap.to(info, {
+            opacity: 0,
+            x: 20,
+            duration: 0.5,
+            ease: "power2.out",
+            delay: 0.2,
+          });
+        };
+        container.addEventListener("mouseenter", handleMouseEnter);
+        return () => {
+          container.removeEventListener("mouseenter", handleMouseEnter);
+        };
+      });
+
+      return () => mm.revert();
     },
     { scope: containerRef },
   );
   return (
-    <div
-      ref={containerRef}
-      className={`relative aspect-video ${className} bg-(--bg-light) rounded-xl`}
-    >
-      <Image
-        ref={imageRef}
-        src={src}
-        alt={alt}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
+    <>
       <div
-        ref={infoRef}
-        style={{ opacity: 0 }}
-        className="absolute top-0 right-0 h-full w-[40%] flex flex-col p-8"
+        ref={containerRef}
+        className={`relative aspect-video ${className} bg-(--bg-light) rounded-xl`}
       >
-        <h3 className="text-2xl font-medium">{title}</h3>
-        <p>{description}</p>
-        <div>
-          {techStacks.map((tech, index) => (
-            <div key={index}>{tech.icon}</div>
-          ))}
-        </div>
-        <div>
-          <p>alo</p>
-          {links.map((link) => (
-            <div key={link.href}>
-              <p className="text-nowrap overflow-hidden text-ellipsis">
-                {link.type}
-              </p>
-              <Link href={link.href}>{link.title}</Link>
+        <Image
+          ref={imageRef}
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div
+          ref={infoRef}
+          style={{ opacity: 0 }}
+          className="hidden md:flex absolute top-0 right-0 h-full w-[40%] flex-col p-8 justify-between"
+        >
+          <div className="flex flex-col gap-8">
+            <div>
+              <h3 className="text-2xl font-medium">{title}</h3>
+              <p className="text-(--text-muted)">{description}</p>
             </div>
-          ))}
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              {techStacks.map((tech, index) => (
+                <Link key={index} href={tech.url}>
+                  {tech.icon}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            {links.map((link) => (
+              <div key={link.href} className="flex gap-4">
+                <Link
+                  href={link.href}
+                  className="text-nowrap text-ellipsis overflow-hidden"
+                >
+                  {link.type}:{" "}
+                  <span className="underline text-blue-400 hover:text-blue-500 active:text-blue-600">
+                    {link.title}
+                  </span>{" "}
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      {children}
+    </>
   );
 }

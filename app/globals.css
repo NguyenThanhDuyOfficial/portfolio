@@ -186,6 +186,6 @@
     @apply bg-(--bg) text-(--text);
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
   }
 }
