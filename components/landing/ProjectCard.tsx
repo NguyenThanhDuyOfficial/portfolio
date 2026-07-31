@@ -76,7 +76,7 @@ export default function ProjectCard({
     <>
       <div
         ref={containerRef}
-        className={`relative aspect-video ${className} bg-(--bg-light) rounded-xl`}
+        className={`relative aspect-video ${className} bg-(--bg-light) rounded-xl w-full`}
       >
         <Image
           ref={imageRef}
@@ -89,7 +89,7 @@ export default function ProjectCard({
         <div
           ref={infoRef}
           style={{ opacity: 0 }}
-          className="hidden md:flex absolute top-0 right-0 h-full w-[40%] flex-col p-8 justify-between"
+          className="hidden gemd:absolute top-0 right-0 h-full w-[40%] flex-col p-8 justify-between"
         >
           <div className="flex flex-col gap-8">
             <div>
