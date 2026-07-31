@@ -1,5 +1,4 @@
-
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import { Geist, Geist_Mono } from "next/font/google";
 
 export const geistSans = Geist({
@@ -13,9 +12,6 @@ export const geistMono = Geist_Mono({
 });
 
 export const simpleNails = localFont({
-  src: './SimplesnailsVer40-6Lpx.ttf',
-  display: "swap"
-})
-
-
-
+  src: "./SimplesnailsVer40-6Lpx.ttf",
+  display: "swap",
+});

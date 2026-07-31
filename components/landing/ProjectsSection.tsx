@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 
 export default function ProjectsSection() {
   const projects = [
@@ -9,16 +9,16 @@ export default function ProjectsSection() {
       client: "",
       tech_stack: "",
       link: {
-        live: ""
+        live: "",
       },
       timeline: {
         start: "",
-        end: ""
-      }
-    }
-  ]
+        end: "",
+      },
+    },
+  ];
   return (
-    <section className="grid grid-cols-12 gap-y-16">
+    <section className="flex flex-col md:grid grid-cols-12 gap-y-16">
       <div className="relative col-span-9 col-start-2 aspect-video">
         <Image
           src="/projects/car.png"
@@ -40,7 +40,7 @@ export default function ProjectsSection() {
         />
       </div>
 
-      <div className="col-span-10 col-start-2 grid grid-cols-10 items-center">
+      <div className="col-span-10 col-start-2 md:grid grid-cols-10 items-center">
         <div className="relative col-span-8 aspect-video">
           <Image
             src="/projects/dotfile.png"
@@ -55,10 +55,9 @@ export default function ProjectsSection() {
           alt="catppuccin"
           width={80}
           height={80}
-          className="rounded-full col-end-11"
+          className="rounded-full col-end-11 hidden md:block"
         />
       </div>
-
     </section>
-  )
+  );
 }

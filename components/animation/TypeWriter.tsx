@@ -1,5 +1,5 @@
-"use client"
-import { useState, useEffect, useRef } from 'react';
+"use client";
+import { useState, useEffect, useRef } from "react";
 
 interface TypewriterProps {
   texts: string[];
@@ -9,7 +9,7 @@ interface TypewriterProps {
   className?: string;
   loop?: boolean;
   onComplete?: () => void;
-  delay: number
+  delay: number;
 }
 
 export default function Typewriter({
@@ -17,12 +17,12 @@ export default function Typewriter({
   typingSpeed = 100,
   deletingSpeed = 50,
   pauseDuration = 1500,
-  className = '',
+  className = "",
   loop = true,
   onComplete,
-  delay = 0
+  delay = 0,
 }: TypewriterProps) {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isReady, setIsReady] = useState(delay === 0);
@@ -33,7 +33,6 @@ export default function Typewriter({
   useEffect(() => {
     stateRef.current = { isDeleting, currentIndex, displayText };
   }, [isDeleting, currentIndex, displayText]);
-
 
   useEffect(() => {
     if (delay === 0) {
@@ -49,7 +48,11 @@ export default function Typewriter({
   }, [delay]);
 
   const animate = () => {
-    const { isDeleting: isDel, currentIndex: idx, displayText: text } = stateRef.current;
+    const {
+      isDeleting: isDel,
+      currentIndex: idx,
+      displayText: text,
+    } = stateRef.current;
     const fullText = texts[idx];
 
     if (isDel) {
