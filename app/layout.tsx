@@ -1,11 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { geistMono, geistSans } from "../fonts/fonts";
-import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,12 +24,12 @@ export default function RootLayout({
         geistSans.variable,
         geistMono.variable,
         "font-sans",
-        geist.variable,
       )}
     >
       <body className="min-h-full flex flex-col m-0 p-0">
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
