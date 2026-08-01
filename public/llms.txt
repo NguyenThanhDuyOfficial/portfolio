@@ -1,0 +1,11 @@
+# Nguyễn Thành Duy - Fullstack Developer Portfolio
+
+Full-stack developer specializing in Next.js, Nest.js, who love building softwares that helps the Earth.
+
+## Projects
+- [Car](https://carrentalcomps.vercel.app/): Car rental app
+- [Odyssey](https://odyssey-group.vercel.app/): Study Discord Community Website
+- [Dotfile](): My Dots thing
+
+## About
+- [Github](https://github.com/NguyenThanhDuyOfficial): Git thing
