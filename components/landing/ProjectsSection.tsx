@@ -33,6 +33,7 @@ const projects = [
     alt: "car-screenshot",
     className: "col-span-8 col-start-2",
     title: "Car Rental",
+    ariaLabel: "Go to Car Rental",
     description:
       "Car rental websites allow users to filter, select, and rent vehicles.\nA learning project i will continue in the future.",
     techStacks: [
@@ -104,11 +105,6 @@ const projects = [
         icon: <SiSwagger color="#85EA2D" />,
         url: "https://swagger.io/",
       },
-      {
-        title: "Throttler",
-        icon: <SiNestjs color="#E0234E" />,
-        url: "https://github.com/nestjs/throttler",
-      },
 
       // DevOps & Deployment
       {
@@ -151,6 +147,7 @@ const projects = [
     alt: "odyssey-screenshot",
     className: "col-span-8 col-start-3",
     title: "Odyssey",
+    ariaLabel: "go to Odyssey Website",
     description: "Website i make for my Study Discord Community!!!",
     techStacks: [
       // Frontend
@@ -207,6 +204,7 @@ const projects = [
     className: "col-span-8 col-start-1",
     title: "Dotfile Arch/Hypr",
     description: "A custom DE i use every day.",
+    ariaLabel: "go to Dotfile ",
     techStacks: [],
     links: [
       {
@@ -266,6 +264,7 @@ export default function ProjectsSection() {
           links={project.links}
           className={`project-card ${project.className}
 `}
+          ariaLabel={project.ariaLabel}
         >
           {project.children && project.children}
         </ProjectCard>

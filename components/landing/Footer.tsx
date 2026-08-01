@@ -102,6 +102,8 @@ export default function Footer() {
             width={200}
             height={200}
             className="object-cover rounded-xl"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            unoptimized
           ></Image>
         </div>
       </div>
@@ -113,6 +115,8 @@ export default function Footer() {
             width={140}
             height={140}
             className="object-cover rounded-xl"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            unoptimized
           ></Image>
         </div>
         <div className="image-2 md:absolute top-100 right-0">
@@ -122,13 +126,11 @@ export default function Footer() {
             width={160}
             height={300}
             className="object-cover rounded-xl"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            unoptimized
           ></Image>
         </div>
       </div>
-
-      {/* <div className="md:hidden"> */}
-      {/*   <p className="text-8xl">Thank you for your time</p> */}
-      {/* </div> */}
     </footer>
   );
 }

@@ -93,13 +93,14 @@ export default function HeroSection() {
             <SocialLinks></SocialLinks>
           </div>
           <div className="flex gap-16 items-center">
-            <p className="max-w-84 hidden md:block">
+            <p className="max-w-84 hidden lg:block">
               Hey there, I make websites and apps that are user-friendly,
               high-performance, and secure.
               <br />
               What about you? What do you need?
             </p>
             <Button
+              aria-label="open-contact"
               variant="default"
               size="lg"
               className="px-4 h-12"

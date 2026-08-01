@@ -14,11 +14,14 @@ export default function ProjectCard({
   techStacks = [],
   links = [],
   children,
+  ariaLabel,
 }) {
   const containerRef = useRef(null);
   const imageRef = useRef(null);
   const infoRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
+  const github = links.find((item) => item.type === "Github");
+  const href = github?.href;
 
   useGSAP(
     () => {
@@ -78,6 +81,11 @@ export default function ProjectCard({
         ref={containerRef}
         className={`relative aspect-video ${className} bg-(--bg-light) rounded-xl w-full`}
       >
+        <Link
+          href={href}
+          className="absolute inset-0 z-50 w-full h-full block md:hidden"
+          aria-label={ariaLabel}
+        ></Link>
         <Image
           ref={imageRef}
           src={src}
@@ -85,11 +93,12 @@ export default function ProjectCard({
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={true}
         />
         <div
           ref={infoRef}
           style={{ opacity: 0 }}
-          className="hidden gemd:absolute top-0 right-0 h-full w-[40%] flex-col p-8 justify-between"
+          className="hidden md:flex absolute top-0 right-0 h-full w-[40%] flex-col p-8 justify-between"
         >
           <div className="flex flex-col gap-8">
             <div>
@@ -98,7 +107,7 @@ export default function ProjectCard({
             </div>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {techStacks.map((tech, index) => (
-                <Link key={index} href={tech.url}>
+                <Link key={index} href={tech.url} aria-label="go to Tech Page">
                   {tech.icon}
                 </Link>
               ))}
@@ -108,6 +117,7 @@ export default function ProjectCard({
             {links.map((link) => (
               <div key={link.href} className="flex gap-4">
                 <Link
+                  aria-label={ariaLabel}
                   href={link.href}
                   className="text-nowrap text-ellipsis overflow-hidden"
                 >

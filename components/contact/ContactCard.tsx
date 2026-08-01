@@ -69,6 +69,7 @@ export default function ContactCard({
             onClick={() => onClose?.()}
             variant="ghost"
             className="hover:text-(--bg)"
+            aria-label="close-contact"
           >
             <X />
           </Button>
@@ -123,6 +124,7 @@ export default function ContactCard({
         <CardFooter className="bg-(--bg) pb-8 border-0">
           <Field orientation="horizontal">
             <Button
+              aria-label="submit-form"
               type="submit"
               form="contact-form"
               size="lg"

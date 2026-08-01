@@ -13,17 +13,21 @@ export default function SocialLinks() {
       href: "https://github.com/NguyenThanhDuyOfficial",
       icon: <SiGithub />,
       iconImage: null,
+      ariaLabel: "Github Link",
     },
     {
       title: "LinkedIn",
       href: "https://www.linkedin.com/in/nguyenthanhduyofficial/",
       icon: null,
+      ariaLabel: "LinkedIn Link",
       iconImage: (
         <Image
           src="/icons/linkedin.png"
           alt="linkedin"
-          width={24}
-          height={24}
+          fill
+          className="object-cover"
+          loading="eager"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         ></Image>
       ),
     },
@@ -32,18 +36,25 @@ export default function SocialLinks() {
       href: "https://facebook.com/nguyenthanhduyofficial",
       icon: <SiFacebook color="#1877F2" />,
       iconImage: null,
+      ariaLabel: "Facebook Link",
     },
     {
       title: "Youtube",
       href: "https://www.youtube.com/@NguyenThanhDuyOfficial",
       icon: <SiYoutube color="#FF0000" />,
       iconImage: null,
+      ariaLabel: "Youtube Link",
     },
   ];
   return (
     <div className="flex gap-4 items-center">
       {socialLinks.map((link) => (
-        <Link key={link.href} href={link.href}>
+        <Link
+          key={link.href}
+          href={link.href}
+          className="relative w-6 h-6"
+          aria-label={link.ariaLabel}
+        >
           {link.icon ? link.icon : link.iconImage}
         </Link>
       ))}

@@ -15,25 +15,43 @@ export default function Header() {
       <header className="fixed top-0 left-0 w-full z-50 px-8 h-20 md:px-20 flex justify-between items-center bg-(--bg)">
         <p className={`${simpleNails.className} text-4xl md:text-4xl`}>Duy</p>
         <div className="hidden md:flex items-center gap-16 md:text-xl">
-          <Link href="#projects" scroll={true}>
+          <Link
+            href="#projects"
+            scroll={true}
+            aria-label="Go to Project Section"
+          >
             Projects
           </Link>
           {/* <Link href="/about">About</Link> */}
-          <Button onClick={() => setIsContactOpen(!isContactOpen)}>
+          <Button
+            aria-label="open-contact"
+            onClick={() => setIsContactOpen(!isContactOpen)}
+          >
             Contact
           </Button>
         </div>
-        <Button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
+        <Button
+          aria-label="open-contact"
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden"
+        >
           {!isOpen ? <Menu size={32} /> : <X size={32} />}
         </Button>
         {isOpen ? (
           <div className="w-full min-h-screen fixed top-20 left-0 z-100 bg-(--bg) flex flex-col items-center gap-8">
-            <Link href="#projects" scroll={true}>
+            <Link
+              href="#projects"
+              scroll={true}
+              aria-label="go to project section"
+            >
               Projects
             </Link>
             {/* <Link href="/about">About</Link> */}
             <Link href="/contact">Contact</Link>
-            <Button onClick={() => setIsContactOpen(!isContactOpen)}>
+            <Button
+              aria-label="open-contact"
+              onClick={() => setIsContactOpen(!isContactOpen)}
+            >
               Contact
             </Button>
           </div>

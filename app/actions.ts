@@ -1,16 +1,43 @@
 "use server";
 
+import { Redis } from "@upstash/redis";
+import { Ratelimit } from "@upstash/ratelimit";
 import { sendMail } from "@/lib/sendMail";
+import { headers } from "next/headers";
 import {
   contactFormSchema,
   type ContactFormState,
 } from "@/schemas/contact.schema";
-import { sources } from "next/dist/compiled/webpack/webpack";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(5, "60 s"),
+});
 
 export async function contactFormAction(
   _prevState: ContactFormState,
   formData: FormData,
 ) {
+  const headersList = await headers();
+  const ip =
+    headersList.get("x-forwarded-for")?.split(",")[0] ??
+    headersList.get("x-real-ip") ??
+    "anonymous";
+
+  const { success } = await ratelimit.limit(ip);
+
+  if (!success) {
+    return {
+      values: {
+        email: (formData.get("email") as string) || "",
+        message: (formData.get("message") as string) || "",
+      },
+      success: false,
+      errors: {
+        _form: ["Too many requests. Please try again later."],
+      },
+    };
+  }
   const values = {
     email: formData.get("email") as string,
     message: formData.get("message") as string,
