@@ -4,6 +4,7 @@ import { geistMono, geistSans } from "../fonts/fonts";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Thành Duy",
@@ -34,6 +35,7 @@ export default function RootLayout({
         {children}
         <Toaster />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
